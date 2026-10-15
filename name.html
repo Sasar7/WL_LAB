@@ -1,0 +1,1049 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarePlus | Healthcare Services</title>
+
+    <style>
+        /* ===== GLOBAL STYLES ===== */
+        :root {
+            --primary: #147d92;
+            --dark: #0b5266;
+            --accent: #38b89a;
+            --light: #e4f7f3;
+            --background: #f4f9fb;
+            --text: #183344;
+            --muted: #657b89;
+            --white: #ffffff;
+            --shadow: 0 12px 35px rgba(20, 70, 90, 0.10);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1150px;
+            margin: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 22px;
+            border-radius: 10px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            color: white;
+            background: var(--primary);
+            box-shadow: 0 6px 16px rgba(20, 125, 146, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: var(--dark);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            background: white;
+        }
+
+        .btn-outline:hover {
+            background: var(--light);
+        }
+
+        /* ===== TOP BAR ===== */
+        .topbar {
+            background: var(--dark);
+            color: white;
+            padding: 9px 0;
+            font-size: 14px;
+        }
+
+        .topbar-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        /* ===== NAVIGATION ===== */
+        header {
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        nav {
+            min-height: 78px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .logo-icon {
+            width: 43px;
+            height: 43px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            color: white;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 27px;
+            align-items: center;
+            font-weight: 600;
+            color: #526b79;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            padding: 75px 0;
+            background: linear-gradient(120deg, #f4f9fb, #e4f7f3);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 55px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--light);
+            color: var(--dark);
+            padding: 7px 15px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: clamp(38px, 5vw, 62px);
+            line-height: 1.12;
+            margin: 22px 0;
+            letter-spacing: -1.5px;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 17px;
+            margin-bottom: 27px;
+            max-width: 550px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .hero-image {
+            min-height: 380px;
+            display: grid;
+            place-items: center;
+            border-radius: 30px;
+            background: linear-gradient(145deg, #d8f4ed, #dcecff);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .medical-symbol {
+            width: 230px;
+            height: 230px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: white;
+            color: var(--primary);
+            font-size: 125px;
+            box-shadow: var(--shadow);
+        }
+
+        .floating-note {
+            position: absolute;
+            bottom: 25px;
+            left: 18px;
+            right: 18px;
+            max-width: 285px;
+            padding: 16px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .floating-note strong {
+            color: var(--dark);
+        }
+
+        .floating-note p {
+            font-size: 13px;
+            margin: 3px 0 0;
+        }
+
+        /* ===== STATISTICS ===== */
+        .stats {
+            padding: 0 0 65px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            background: white;
+            border-radius: 18px;
+            box-shadow: var(--shadow);
+            margin-top: -5px;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 27px 12px;
+        }
+
+        .stat + .stat {
+            border-left: 1px solid #e0ebef;
+        }
+
+        .stat h2 {
+            color: var(--primary);
+            font-size: 32px;
+        }
+
+        .stat p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* ===== GENERAL SECTION STYLES ===== */
+        .section {
+            padding: 75px 0;
+        }
+
+        .section-heading {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 42px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            line-height: 1.2;
+            margin: 15px 0;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+        }
+
+        /* ===== SERVICES ===== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 23px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 28px;
+            border-radius: 19px;
+            border: 1px solid #e0ebef;
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-7px);
+            box-shadow: var(--shadow);
+            border-color: #b8dce2;
+        }
+
+        .service-icon {
+            width: 58px;
+            height: 58px;
+            display: grid;
+            place-items: center;
+            background: var(--light);
+            border-radius: 16px;
+            font-size: 29px;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .service-card p {
+            color: var(--muted);
+            margin-bottom: 18px;
+            font-size: 15px;
+        }
+
+        .read-more {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* ===== DOCTORS ===== */
+        .doctors {
+            background: #eaf5f8;
+        }
+
+        .doctor-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .doctor-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            text-align: center;
+            transition: 0.3s;
+            border: 1px solid #e0ebef;
+        }
+
+        .doctor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .doctor-avatar {
+            height: 180px;
+            display: grid;
+            place-items: center;
+            font-size: 80px;
+            background: linear-gradient(135deg, #d9f4ee, #e1edff);
+        }
+
+        .doctor-info {
+            padding: 24px;
+        }
+
+        .doctor-info h3 {
+            font-size: 20px;
+        }
+
+        .doctor-info p {
+            color: var(--muted);
+            margin: 5px 0 12px;
+        }
+
+        .rating {
+            color: #e4a11b;
+            margin-bottom: 18px;
+        }
+
+        /* ===== APPOINTMENT ===== */
+        .appointment-grid {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 45px;
+            align-items: start;
+        }
+
+        .appointment-info h2 {
+            font-size: 38px;
+            line-height: 1.2;
+            margin: 17px 0;
+        }
+
+        .appointment-info > p {
+            color: var(--muted);
+            margin-bottom: 25px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 20px 0;
+        }
+
+        .contact-icon {
+            width: 45px;
+            height: 45px;
+            display: grid;
+            place-items: center;
+            background: var(--light);
+            border-radius: 12px;
+            font-size: 21px;
+        }
+
+        .contact-item small {
+            color: var(--muted);
+        }
+
+        .appointment-form {
+            background: white;
+            padding: 30px;
+            border-radius: 22px;
+            box-shadow: var(--shadow);
+            border: 1px solid #e0ebef;
+        }
+
+        .appointment-form h3 {
+            font-size: 26px;
+            margin-bottom: 5px;
+        }
+
+        .form-description {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 23px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d7e5ea;
+            border-radius: 10px;
+            background: #fbfdfe;
+            font: inherit;
+            color: var(--text);
+            outline: none;
+            transition: 0.2s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(20, 125, 146, 0.12);
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .form-note {
+            color: var(--muted);
+            font-size: 12px;
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #103e50;
+            color: white;
+            padding: 48px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr;
+            gap: 35px;
+            padding-bottom: 32px;
+        }
+
+        .footer-brand {
+            color: white;
+            font-size: 25px;
+            font-weight: 800;
+            margin-bottom: 13px;
+        }
+
+        footer p, footer a {
+            color: #b8d3dc;
+            font-size: 14px;
+        }
+
+        footer h3 {
+            margin-bottom: 14px;
+        }
+
+        .footer-links {
+            display: grid;
+            gap: 9px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 18px;
+            text-align: center;
+            color: #b8d3dc;
+            font-size: 13px;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 900px) {
+            .hero-content {
+                gap: 30px;
+            }
+
+            .nav-links {
+                gap: 14px;
+                font-size: 14px;
+            }
+
+            .services-grid,
+            .doctor-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .appointment-grid {
+                gap: 25px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .topbar-content {
+                justify-content: center;
+                text-align: center;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                padding: 15px 0;
+            }
+
+            .nav-links {
+                order: 3;
+                width: 100%;
+                justify-content: space-between;
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+
+            .nav > .btn {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+
+            .hero {
+                padding: 48px 0;
+            }
+
+            .hero-content,
+            .appointment-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-image {
+                min-height: 320px;
+            }
+
+            .medical-symbol {
+                width: 190px;
+                height: 190px;
+                font-size: 100px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat:nth-child(3),
+            .stat:nth-child(4) {
+                border-top: 1px solid #e0ebef;
+            }
+
+            .stat:nth-child(3) {
+                border-left: none;
+            }
+
+            .section {
+                padding: 55px 0;
+            }
+
+            .services-grid,
+            .doctor-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .appointment-form {
+                padding: 22px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+        <div class="container topbar-content">
+            <span>✚ Compassionate care, every day</span>
+            <span>☎ +91 98765 43210 &nbsp; | &nbsp; hello@careplus.example</span>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <header>
+        <nav class="container">
+            <a href="#home" class="logo">
+                <span class="logo-icon">✚</span>
+                CarePlus
+            </a>
+
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#doctors">Doctors</a>
+                <a href="#appointment">Contact</a>
+            </div>
+
+            <a href="#appointment" class="btn btn-primary">
+                Book Appointment ↗
+            </a>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+
+            <div>
+                <span class="tag">Your health, our priority</span>
+
+                <h1>
+                    Better care for a
+                    <span>healthier</span> tomorrow.
+                </h1>
+
+                <p>
+                    Personalized healthcare that puts you first.
+                    From everyday checkups to specialist consultations,
+                    our caring team supports your health journey.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#appointment" class="btn btn-primary">
+                        Book a Consultation →
+                    </a>
+
+                    <a href="#services" class="btn btn-outline">
+                        Explore Services
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <div class="medical-symbol">✚</div>
+
+                <div class="floating-note">
+                    <strong>♥ Care that feels personal</strong>
+                    <p>Professional care with a human touch.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- STATISTICS -->
+    <section class="stats">
+        <div class="container stats-grid">
+
+            <div class="stat">
+                <h2>15+</h2>
+                <p>Years of Experience</p>
+            </div>
+
+            <div class="stat">
+                <h2>25+</h2>
+                <p>Medical Specialists</p>
+            </div>
+
+            <div class="stat">
+                <h2>10k+</h2>
+                <p>Patients Supported</p>
+            </div>
+
+            <div class="stat">
+                <h2>24/7</h2>
+                <p>Care Guidance</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- HEALTHCARE SERVICES -->
+    <section class="section" id="services">
+        <div class="container">
+
+            <div class="section-heading">
+                <span class="tag">Our Services</span>
+                <h2>Complete care for every stage of life</h2>
+                <p>
+                    Explore healthcare services designed around your needs,
+                    with clear guidance and compassionate support.
+                </p>
+            </div>
+
+            <div class="services-grid">
+
+                <article class="service-card">
+                    <div class="service-icon">🩺</div>
+                    <h3>General Consultation</h3>
+                    <p>
+                        Routine checkups, common health concerns,
+                        preventive advice and wellness support.
+                    </p>
+                    <a href="#appointment" class="read-more">Book a Visit →</a>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-icon">❤️</div>
+                    <h3>Cardiology</h3>
+                    <p>
+                        Heart-health assessments and specialist
+                        guidance for your cardiovascular wellbeing.
+                    </p>
+                    <a href="#appointment" class="read-more">Meet a Specialist →</a>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-icon">🧪</div>
+                    <h3>Diagnostics & Lab</h3>
+                    <p>
+                        Convenient diagnostic services and laboratory
+                        testing to support medical decisions.
+                    </p>
+                    <a href="#appointment" class="read-more">Ask About Tests →</a>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-icon">👶</div>
+                    <h3>Pediatric Care</h3>
+                    <p>
+                        Friendly healthcare visits for children,
+                        including growth and preventive care.
+                    </p>
+                    <a href="#appointment" class="read-more">Book Child Care →</a>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-icon">🌿</div>
+                    <h3>Mental Wellness</h3>
+                    <p>
+                        Respectful conversations and guidance
+                        to support emotional wellbeing.
+                    </p>
+                    <a href="#appointment" class="read-more">Explore Support →</a>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-icon">🚑</div>
+                    <h3>Urgent Care Guidance</h3>
+                    <p>
+                        Guidance on finding appropriate care
+                        when a health concern needs prompt attention.
+                    </p>
+                    <a href="#appointment" class="read-more">Contact Our Team →</a>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- DOCTORS SECTION -->
+    <section class="section doctors" id="doctors">
+        <div class="container">
+
+            <div class="section-heading">
+                <span class="tag">Meet Our Team</span>
+                <h2>Care from people who care</h2>
+                <p>
+                    Meet our sample healthcare professionals
+                    and find the right specialist for your needs.
+                </p>
+            </div>
+
+            <div class="doctor-grid">
+
+                <article class="doctor-card">
+                    <div class="doctor-avatar">👩‍⚕️</div>
+                    <div class="doctor-info">
+                        <h3>Dr. Ananya Sharma</h3>
+                        <p>General Physician</p>
+                        <div class="rating">★★★★★</div>
+                        <a href="#appointment" class="btn btn-outline">
+                            Request Appointment
+                        </a>
+                    </div>
+                </article>
+
+                <article class="doctor-card">
+                    <div class="doctor-avatar">👨‍⚕️</div>
+                    <div class="doctor-info">
+                        <h3>Dr. Rohan Mehta</h3>
+                        <p>Cardiology Specialist</p>
+                        <div class="rating">★★★★★</div>
+                        <a href="#appointment" class="btn btn-outline">
+                            Request Appointment
+                        </a>
+                    </div>
+                </article>
+
+                <article class="doctor-card">
+                    <div class="doctor-avatar">👩‍⚕️</div>
+                    <div class="doctor-info">
+                        <h3>Dr. Priya Nair</h3>
+                        <p>Pediatrician</p>
+                        <div class="rating">★★★★★</div>
+                        <a href="#appointment" class="btn btn-outline">
+                            Request Appointment
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- APPOINTMENT SECTION -->
+    <section class="section" id="appointment">
+        <div class="container appointment-grid">
+
+            <div class="appointment-info">
+                <span class="tag">Get In Touch</span>
+
+                <h2>Make time for your health.</h2>
+
+                <p>
+                    Request an appointment by filling out the form.
+                    Our team can follow up to confirm your preferred time.
+                </p>
+
+                <div class="contact-item">
+                    <div class="contact-icon">☎</div>
+                    <div>
+                        <small>Call Our Team</small>
+                        <p>+91 98765 43210</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">✉</div>
+                    <div>
+                        <small>Email Us</small>
+                        <p>hello@careplus.example</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">⌖</div>
+                    <div>
+                        <small>Visit Us</small>
+                        <p>Your Clinic Address, City, India</p>
+                    </div>
+                </div>
+            </div>
+
+            <form class="appointment-form" action="#" method="get">
+                <h3>Book an Appointment</h3>
+
+                <p class="form-description">
+                    Enter your details and preferred appointment information.
+                </p>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter your name"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="+91 98765 43210"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service">Select Service</label>
+                        <select id="service" name="service" required>
+                            <option value="">Choose a service</option>
+                            <option>General Consultation</option>
+                            <option>Cardiology</option>
+                            <option>Diagnostics & Lab</option>
+                            <option>Pediatric Care</option>
+                            <option>Mental Wellness</option>
+                            <option>Urgent Care Guidance</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">Preferred Date</label>
+                        <input
+                            type="date"
+                            id="date"
+                            name="date"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group full">
+                        <label for="message">Additional Note (Optional)</label>
+                        <textarea
+                            id="message"
+                            name="message"
+                            placeholder="Enter a brief scheduling note"
+                        ></textarea>
+                    </div>
+
+                </div>
+
+                <button type="submit" class="btn btn-primary submit-btn">
+                    Send Appointment Request →
+                </button>
+
+                <p class="form-note">
+                    Demo form: connect a secure backend to receive requests.
+                </p>
+            </form>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div>
+                    <div class="footer-brand">✚ CarePlus</div>
+                    <p>
+                        Thoughtful healthcare, clear guidance,
+                        and a caring team focused on your wellbeing.
+                    </p>
+                </div>
+
+                <div>
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="#home">Home</a>
+                        <a href="#services">Our Services</a>
+                        <a href="#doctors">Our Doctors</a>
+                        <a href="#appointment">Book Appointment</a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3>Opening Hours</h3>
+                    <div class="footer-links">
+                        <p>Monday – Friday: 9 AM – 6 PM</p>
+                        <p>Saturday: 9 AM – 2 PM</p>
+                        <p>Sunday: By appointment</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="copyright">
+                © 2026 CarePlus Healthcare. Demo website template.
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+</html>
